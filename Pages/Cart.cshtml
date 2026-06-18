@@ -1,0 +1,95 @@
+﻿@page
+@using SportSln.Pages
+@model CartModel
+
+<div class="row mt-4 g-4">
+    <div class="col-lg-8">
+        <div class="card card-elevated rounded-4 p-2">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <h4 class="fw-bold m-0" style="color: #D70018;">Giỏ hàng của bạn</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle m-0">
+                        <thead class="bg-custom-gradient text-white">
+                            <tr>
+                                <th class="rounded-start" style="width: 40%; border: none !important;">Sản phẩm</th>
+                                <th class="text-center" style="width: 20%; border: none !important;">Đơn giá</th>
+                                <th class="text-center" style="width: 20%; border: none !important;">Số lượng</th>
+                                <th class="text-end rounded-end" style="width: 20%; border: none !important;">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody style="border-spacing: 0 10px; border-collapse: separate; display: table-row-group;">
+                            @foreach (var line in Model?.Cart?.Lines ?? Enumerable.Empty<CartLine>())
+                            {
+                                <tr>
+                                    <td class="text-start fw-bold text-dark pe-3 rounded-start"
+                                        style="border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; border-left: 1px solid #dee2e6;">
+                                        @line.Product.Name
+                                    </td>
+
+                                    <td class="text-center text-secondary small"
+                                        style="border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;">
+                                        @line.Product.Price.ToString("c")
+                                    </td>
+
+                                    <td class="text-center fw-bold fs-6 text-dark"
+                                        style="border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;">
+                                        @line.Quantity
+                                    </td>
+
+                                    <td class="text-end fw-bold rounded-end"
+                                        style="color: #D70018; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; border-right: 1px solid #dee2e6;">
+                                        @((line.Quantity * line.Product.Price).ToString("c"))
+                                    </td>
+                                </tr>
+                            }
+                            @if (!(Model?.Cart?.Lines.Any() ?? false))
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-5 text-secondary">
+                                        <i class="fs-4 d-block mb-2">🛒</i> Giỏ hàng của bạn đang trống.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card card-elevated rounded-4 p-2 position-sticky" style="top: 24px;">
+            <div class="card-header bg-white border-0 pt-4 pb-2">
+                <h5 class="fw-bold m-0 text-dark">Tóm tắt đơn hàng</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Tổng số lượng mặt hàng:</span>
+                    <span class="fw-bold text-dark">
+                        @(Model?.Cart?.Lines?.Sum(l => l.Quantity) ?? 0)
+                    </span>
+                </div>
+
+                <hr class="text-muted my-3" style="opacity: 0.15;">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="fw-bold fs-5 text-dark">Tổng tiền:</span>
+                    <span class="fw-bold fs-4" style="color: #D70018;">
+                        @((Model?.Cart?.ComputeTotalValue() ?? 0).ToString("c"))
+                    </span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a class="btn bg-custom-gradient text-white py-2 fw-bold rounded-pill shadow-sm border-0" href="#">
+                        Tiến hành thanh toán
+                    </a>
+                    <a class="btn btn-outline-danger py-2 fw-bold rounded-pill" href="@Model?.ReturnUrl">
+                        Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<string>
+
+<div class="nav-card">
+    <a class="nav-link-custom @(ViewBag.SelectedCategory == null ? "nav-link-active" : "")"
+       asp-action="Index" asp-controller="Home" asp-route-category="">
+        Tất cả sản phẩm
+    </a>
+
+    @foreach (string category in Model ?? Enumerable.Empty<string>())
+    {
+        <a class="nav-link-custom @(category == ViewBag.SelectedCategory ? "nav-link-active" : "")"
+           asp-action="Index" asp-controller="Home"
+           asp-route-category="@category" asp-route-productPage="1">
+            @category
+        </a>
+    }
+</div>
