@@ -11,10 +11,23 @@ body {
 }
 
 /* Class màu Gradient chủ đạo mới (Dùng chung cho Header, các badge hoặc nút lớn) */
+.bg-custom-header {
+    background: linear-gradient(#FF4B4B, #D70018) !important;
+}
 .bg-custom-gradient {
     background: linear-gradient(#FF4B4B, #D70018) !important;
 }
 
+/* Phần Cart Summary */
+.btn-cart-summary {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-cart-summary:hover {
+        filter: brightness(120%);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 20px rgba(220, 53, 69, 0.4);
+}
 
 
 /* ==========================================================================
@@ -89,6 +102,7 @@ body {
         background: linear-gradient(135deg, #FF4B4B, #D70018) !important;
         color: white !important;
         transition: filter 0.2s ease;
+        filter: brightness(110%);
     }
 
 /* Nút được chọn */
