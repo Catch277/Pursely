@@ -1,41 +1,68 @@
 ﻿@model Order
-<h2>Thanh toán ngay</h2>
-<p>Vui lòng nhập thông tin của bạn, và hàng của bạn sẽ được vận chuyển ngay!</p>
-<div asp-validation-summary="All" class="text-danger"></div>
-<form asp-action="Checkout" method="post">
-	<h3>Gửi đến</h3>
-	<div class="form-group">
-		<label>Name:</label><input asp-for="Name" class="form-control" />
+
+<h2 class="fw-bold text-center mt-4" style="color: #D70018;">Thông tin thanh toán</h2>
+<p class="text-center text-secondary mb-4">Vui lòng nhập thông tin của bạn, và đơn hàng của bạn sẽ được vận chuyển ngay!</p>
+
+<div asp-validation-summary="ModelOnly" class="text-danger fw-bold text-center mb-3"></div>
+
+<form asp-action="Checkout" method="post" class="card card-elevated rounded-4 p-4 p-md-5 border-0 mx-auto mb-5" style="max-width: 700px;">
+
+	<h3 class="fs-5 fw-bold text-dark border-bottom pb-2 mb-3">Tên người nhận</h3>
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Tên:</label>
+		<input asp-for="Name" class="form-control checkout-input" />
+		<span asp-validation-for="Name" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<h3>Address</h3>
-	<div class="form-group">
-		<label>Line 1:</label><input asp-for="Line1" class="form-control" />
+
+	<h3 class="fs-5 fw-bold text-dark border-bottom pb-2 mt-4 mb-3">Địa chỉ nhận hàng</h3>
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Dòng 1:</label>
+		<input asp-for="Line1" class="form-control checkout-input" />
+		<span asp-validation-for="Line1" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<div class="form-group">
-		<label>Line 2:</label><input asp-for="Line2" class="form-control" />
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Dòng 2:</label>
+		<input asp-for="Line2" class="form-control checkout-input" />
+		<span asp-validation-for="Line2" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<div class="form-group">
-		<label>Line 3:</label><input asp-for="Line3" class="form-control" />
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Dòng 3:</label>
+		<input asp-for="Line3" class="form-control checkout-input" />
+		<span asp-validation-for="Line3" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<div class="form-group">
-		<label>City:</label><input asp-for="City" class="form-control" />
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Phường/Xã:</label>
+		<input asp-for="City" class="form-control checkout-input" />
+		<span asp-validation-for="City" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<div class="form-group">
-		<label>State:</label><input asp-for="State" class="form-control" />
+	<div class="form-group mb-3">
+		<label class="form-label fw-semibold text-secondary small mb-1">Tỉnh/Thành phố:</label>
+		<input asp-for="State" class="form-control checkout-input" />
+		<span asp-validation-for="State" class="text-danger small mt-1 d-block fw-semibold"></span>
 	</div>
-	<div class="form-group">
-		<label>Zip:</label><input asp-for="Zip" class="form-control" />
+
+	<div class="row g-3">
+		<div class="col-6 form-group mb-3">
+			<label class="form-label fw-semibold text-secondary small mb-1">Mã zip:</label>
+			<input asp-for="Zip" class="form-control checkout-input" />
+			<span asp-validation-for="Zip" class="text-danger small mt-1 d-block fw-semibold"></span>
+		</div>
+		<div class="col-6 form-group mb-3">
+			<label class="form-label fw-semibold text-secondary small mb-1">Quốc gia:</label>
+			<input asp-for="Country" class="form-control checkout-input" />
+			<span asp-validation-for="Country" class="text-danger small mt-1 d-block fw-semibold"></span>
+		</div>
 	</div>
-	<div class="form-group">
-		<label>Country:</label><input asp-for="Country" class="form-control" />
-	</div>
-	<h3>Tùy chọn</h3>
-	<div class="checkbox">
-		<label>
-			<input asp-for="GiftWrap" /> Gói quà những món hàng này
+
+	<h3 class="fs-5 fw-bold text-dark border-bottom pb-2 mt-4 mb-3">Tùy chọn</h3>
+	<div class="checkbox mb-4">
+		<label class="d-flex align-items-center gap-2 fw-semibold text-dark" style="cursor: pointer;">
+			<input asp-for="GiftWrap" class="form-check-input checkout-checkbox m-0" /> Gói quà đơn hàng của bạn
 		</label>
 	</div>
-	<div class="text-center">
-		<input class="btn btn-primary" type="submit" value="Complete Order" />
+
+	<div class="text-center mt-3">
+		<input class="btn bg-custom-gradient text-white fw-bold shadow-sm rounded-pill px-5 py-2 border-0"
+			   type="submit" value="Xác nhận đặt hàng" style="min-width: 250px;" />
 	</div>
 </form>

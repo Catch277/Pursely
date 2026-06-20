@@ -1,5 +1,4 @@
 ﻿@page
-@using SportSln.Pages
 @model CartModel
 
 <div class="row mt-4 g-4">
@@ -46,10 +45,9 @@
 
                                     <td class="text-center rounded-end"
                                         style="border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; border-right: 1px solid #dee2e6;">
-                                        <form asp-page-handler="Remove" method="post" class="m-0">
-                                            <input type="hidden" name="ProductID" value="@line.Product.ProductID" />
+                                        <form asp-page="/Cart" asp-page-handler="Remove" method="post" class="m-0">
+                                            <input type="hidden" name="ProductId" value="@line.Product.ProductID" />
                                             <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
-
                                             <button type="submit" class="btn btn-sm btn-outline-danger fw-bold rounded-pill px-3 shadow-sm">
                                                 Xóa
                                             </button>
@@ -60,7 +58,7 @@
                             @if (!(Model?.Cart?.Lines.Any() ?? false))
                             {
                                 <tr>
-                                    <td colspan="4" class="text-center py-5 text-secondary">
+                                    <td colspan="5" class="text-center py-5 text-secondary">
                                         <i class="fs-4 d-block mb-2">🛒</i> Giỏ hàng của bạn đang trống.
                                     </td>
                                 </tr>
