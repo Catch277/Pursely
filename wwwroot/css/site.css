@@ -197,3 +197,28 @@ body {
     border-collapse: separate !important;
     border-spacing: 0;
 }
+
+/* ==========================================================================
+   4. CHECKOUT PAGE STYLES
+   ========================================================================== */
+
+/* Style cho các ô nhập liệu */
+.checkout-input {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Hiệu ứng khi người dùng click vào ô nhập liệu */
+ .checkout-input:focus {
+        border-color: #FF4B4B;
+        box-shadow: 0 0 0 0.25rem rgba(215, 0, 24, 0.15);
+        outline: none;
+ }
+
+/* Đổi màu ô Checkbox khi được tích chọn */
+.checkout-checkbox:checked {
+    background-color: #D70018;
+    border-color: #D70018;
+}
